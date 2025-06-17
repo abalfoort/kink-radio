@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Autostart kodi-playing
+Name[nl]=Autostart kodi-playing
+Exec=kodi-playing
+StartupNotify=false
+Terminal=false
+Type=Application

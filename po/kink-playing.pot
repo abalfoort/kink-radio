@@ -1,0 +1,80 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-06-17 17:00+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: usr/lib/kink-playing/kink.py:151
+msgid "Unable to connect to:"
+msgstr ""
+
+#: usr/lib/kink-playing/kink.py:193
+msgid "Artist"
+msgstr ""
+
+#: usr/lib/kink-playing/kink.py:194
+msgid "Title"
+msgstr ""
+
+#: usr/lib/kink-playing/kink.py:410
+msgid "Settings"
+msgstr ""
+
+#: usr/lib/kink-playing/kink.py:413
+msgid "Playlist"
+msgstr ""
+
+#: usr/lib/kink-playing/kink.py:420
+msgid "Stations"
+msgstr ""
+
+#: usr/lib/kink-playing/kink.py:437
+msgid "Now playing"
+msgstr ""
+
+#: usr/lib/kink-playing/kink.py:444
+msgid "Pause"
+msgstr ""
+
+#: usr/lib/kink-playing/kink.py:448
+msgid "Play"
+msgstr ""
+
+#: usr/lib/kink-playing/kink.py:455
+msgid "Quit"
+msgstr ""
+
+#: usr/lib/kink-playing/main.py:23
+msgid "Unexpected error"
+msgstr ""
+
+#: usr/lib/kink-playing/main.py:24
+msgid ""
+"Kink Playing has failed with the following unexpected error.Please submit a "
+"bug report!"
+msgstr ""
+
+#: usr/lib/kink-playing/kink-playing-autostart.desktop.in.h:1
+msgid "Autostart kodi-playing"
+msgstr ""
+
+#: usr/share/applications/kink-playing.desktop.in.h:1
+msgid "KINK Playing"
+msgstr ""
+
+#: usr/share/applications/kink-playing.desktop.in.h:2
+msgid "Notification for what is playing on KINK"
+msgstr ""

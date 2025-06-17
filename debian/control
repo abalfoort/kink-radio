@@ -1,0 +1,25 @@
+Source: kink-playing
+Section: video
+Priority: optional
+Maintainer: Arjen Balfoort <solydxk.abalfoort@tuta.com>
+Build-Depends: debhelper-compat (= 12)
+  , dh-python
+  , python3-all
+Standards-Version: 4.5.0
+Vcs-Git: https://github.com/abalfoort/kink-playing.git
+X-Python3-Version: >= 3.6
+
+Package: kink-playing
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}, ${python3:Depends}
+  , gir1.2-gtk-3.0
+  , gir1.2-notify-0.7
+  , gir1.2-ayatanaappindicator3-0.1
+  , python3-simplejson
+  , python3-iniparse
+  , python3-vlc
+  , xdg-utils
+Suggests: python3-ipdb
+Description: Show ꓘINK notification
+ Show a notification when ꓘINK is playing a new song.
