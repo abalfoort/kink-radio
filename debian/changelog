@@ -1,56 +1,62 @@
-kink-playing (1.5.0) testing; urgency=low
+kink-radio (1.5.1) testing; urgency=low
+
+  * Name change to Kink Radio
+
+ -- Arjen Balfoort <solydxk.abalfoort@tuta.com>  Thu, 26 Jun 2025 18:22:59 +0200
+
+kink-radio (1.5.0) testing; urgency=low
 
   * Major update for Debian 12
 
  -- Arjen Balfoort <solydxk.abalfoort@tuta.com>  Tue, 17 Jun 2025 12:23:11 +0200
 
-kink-playing (1.0.8) testing; urgency=low
+kink-radio (1.0.8) testing; urgency=low
 
   * Fix already running while not yet running
   * Fix binary mode doesn't take an encoding argument
 
  -- Arjen Balfoort <solydxk.abalfoort@tuta.com>  Fri, 16 Jun 2023 04:44:41 +0200
 
-kink-playing (1.0.7) testing; urgency=low
+kink-radio (1.0.7) testing; urgency=low
 
   * Add dependency gir1.2-notify-0.7
 
  -- Arjen Balfoort <solydxk.abalfoort@tuta.com>  Thu, 11 May 2023 09:35:05 +0200
 
-kink-playing (1.0.6) testing; urgency=low
+kink-radio (1.0.6) testing; urgency=low
 
   * Keep simple playlist log
 
  -- Arjen Balfoort <solydxk.abalfoort@tuta.com>  Wed, 10 May 2023 14:27:28 +0200
 
-kink-playing (1.0.5) testing; urgency=low
+kink-radio (1.0.5) testing; urgency=low
 
   * Fix show info just once
   * Remove kink-indie from station list: unused
 
  -- Arjen Balfoort <solydxk.abalfoort@tuta.com>  Wed, 10 May 2023 13:17:12 +0200
 
-kink-playing (1.0.4) testing; urgency=low
+kink-radio (1.0.4) testing; urgency=low
 
   * Remove the use of csv data
-  * Save album art in ~/.kink-playing
+  * Save album art in ~/.kink-radio
   * Include args and returns in function descriptions
 
  -- Arjen Balfoort <solydxk.abalfoort@tuta.com>  Mon, 08 May 2023 10:28:14 +0200
 
-kink-playing (1.0.3) testing; urgency=low
+kink-radio (1.0.3) testing; urgency=low
 
   * Remove HTML text in notification
 
  -- Arjen Balfoort <solydxk.abalfoort@tuta.com>  Sun, 07 May 2023 17:46:50 +0200
 
-kink-playing (1.0.1) testing; urgency=low
+kink-radio (1.0.1) testing; urgency=low
 
   * Cleanup code
 
  -- Arjen Balfoort <solydxk.abalfoort@tuta.com>  Sun, 07 May 2023 12:32:05 +0200
 
-kink-playing (1.0.0) testing; urgency=low
+kink-radio (1.0.0) testing; urgency=low
 
   * Initial version
 
