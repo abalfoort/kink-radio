@@ -1,4 +1,4 @@
-Source: kink-playing
+Source: kink-radio
 Section: video
 Priority: optional
 Maintainer: Arjen Balfoort <solydxk.abalfoort@tuta.com>
@@ -6,10 +6,10 @@ Build-Depends: debhelper-compat (= 12)
   , dh-python
   , python3-all
 Standards-Version: 4.5.0
-Vcs-Git: https://github.com/abalfoort/kink-playing.git
+Vcs-Git: https://github.com/abalfoort/kink-radio.git
 X-Python3-Version: >= 3.6
 
-Package: kink-playing
+Package: kink-radio
 Architecture: all
 Multi-Arch: foreign
 Depends: ${misc:Depends}, ${python3:Depends}
@@ -21,5 +21,5 @@ Depends: ${misc:Depends}, ${python3:Depends}
   , python3-vlc
   , xdg-utils
 Suggests: python3-ipdb
-Description: Show ꓘINK notification
- Show a notification when ꓘINK is playing a new song.
+Description: Show ꓘINK radio notification
+ Show a notification when ꓘINK radio is playing a new song.

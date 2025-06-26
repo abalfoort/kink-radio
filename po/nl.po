@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-17 17:00+0200\n"
+"POT-Creation-Date: 2025-06-26 18:23+0200\n"
 "PO-Revision-Date: 2020-12-31 15:03+0000\n"
 "Last-Translator: Arjen Balfoort <solydxk.abalfoort@tuta.com>, 2021\n"
 "Language-Team: Dutch\n"
@@ -21,70 +21,71 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: usr/lib/kink-playing/kink.py:151
+#: usr/lib/kink-radio/kink.py:151
 msgid "Unable to connect to:"
 msgstr "Niet in staat te verbinden:"
 
-#: usr/lib/kink-playing/kink.py:193
+#: usr/lib/kink-radio/kink.py:193
 msgid "Artist"
 msgstr "Artiest"
 
-#: usr/lib/kink-playing/kink.py:194
+#: usr/lib/kink-radio/kink.py:194
 msgid "Title"
 msgstr "Titel"
 
-#: usr/lib/kink-playing/kink.py:410
+#: usr/lib/kink-radio/kink.py:410
 msgid "Settings"
 msgstr "Instellingen"
 
-#: usr/lib/kink-playing/kink.py:413
+#: usr/lib/kink-radio/kink.py:413
 #, fuzzy
 msgid "Playlist"
 msgstr "Afspeellijst"
 
-#: usr/lib/kink-playing/kink.py:420
+#: usr/lib/kink-radio/kink.py:420
 #, fuzzy
 msgid "Stations"
 msgstr "Duur"
 
-#: usr/lib/kink-playing/kink.py:437
+#: usr/lib/kink-radio/kink.py:437
 msgid "Now playing"
 msgstr "Speelt nu af"
 
-#: usr/lib/kink-playing/kink.py:444
+#: usr/lib/kink-radio/kink.py:444
 msgid "Pause"
 msgstr "Pause"
 
-#: usr/lib/kink-playing/kink.py:448
+#: usr/lib/kink-radio/kink.py:448
 msgid "Play"
 msgstr "Afspelen"
 
-#: usr/lib/kink-playing/kink.py:455
+#: usr/lib/kink-radio/kink.py:455
 msgid "Quit"
 msgstr "Afsluiten"
 
-#: usr/lib/kink-playing/main.py:23
+#: usr/lib/kink-radio/main.py:23
 msgid "Unexpected error"
 msgstr "Onverwachte fout"
 
-#: usr/lib/kink-playing/main.py:24
+#: usr/lib/kink-radio/main.py:24
+#, fuzzy
 msgid ""
-"Kink Playing has failed with the following unexpected error.Please submit a "
+"Kink Radio has failed with the following unexpected error.Please submit a "
 "bug report!"
 msgstr ""
 "Kink Playing is mislukt met de volgende onverwachte fout. Dien a.u.b. een "
 "bugrapport in!"
 
-#: usr/lib/kink-playing/kink-playing-autostart.desktop.in.h:1
+#: usr/lib/kink-radio/kink-radio-autostart.desktop.in.h:1
 msgid "Autostart kodi-playing"
 msgstr "Autostart kodi-playing"
 
-#: usr/share/applications/kink-playing.desktop.in.h:1
+#: usr/share/applications/kink-radio.desktop.in.h:1
 #, fuzzy
-msgid "KINK Playing"
+msgid "KINK Radio"
 msgstr "Speelt nu af"
 
-#: usr/share/applications/kink-playing.desktop.in.h:2
+#: usr/share/applications/kink-radio.desktop.in.h:2
 #, fuzzy
 msgid "Notification for what is playing on KINK"
 msgstr "Notificatie voor wat KINK afspeelt"

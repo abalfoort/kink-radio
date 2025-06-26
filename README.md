@@ -1,4 +1,4 @@
-# kink-playing
+# kink-radio
 System tray app for ꓘINK radio.
 
 Features:
@@ -10,4 +10,4 @@ Features:
 * Settings: site url, stream url, now-playing url, default station, wait until next check, how long to show notifications, autostart, autoplay.
 
 ## Screenshot
-![System Tray Screenshot](usr/lib/kink-playing/screenshot.jpg)
+![System Tray Screenshot](usr/lib/kink-radio/screenshot.jpg)

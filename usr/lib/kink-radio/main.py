@@ -4,24 +4,24 @@
 # -OO: Turn on basic optimizations.  Given twice, causes docstrings to be discarded.
 
 import sys
-import signal
+#import signal
 import traceback
 import gettext
-from kink import KinkPlaying
+from kink import KinkRadio
 from dialogs import error_dialog
 
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
 
-_ = gettext.translation('kink-playing', fallback=True).gettext
+_ = gettext.translation('kink-radio', fallback=True).gettext
 
 def uncaught_excepthook(*args):
     sys.__excepthook__(*args)
     if not __debug__:
         details = '\n'.join(traceback.format_exception(*args)).replace('<', '').replace('>', '')
         title = _('Unexpected error')
-        msg = _('Kink Playing has failed with the following unexpected error.' \
+        msg = _('Kink Radio has failed with the following unexpected error.' \
                 'Please submit a bug report!')
         error_dialog(title, f"<b>{msg}</b>", f"<tt>{details}</tt>", None, True, 'solydxk')
 
@@ -30,8 +30,8 @@ def uncaught_excepthook(*args):
 sys.excepthook = uncaught_excepthook
 
 def main():
-    """Main function initiating KinkPlaying class"""
-    KinkPlaying()
+    """Main function initiating KinkRadio class"""
+    KinkRadio()
     #signal.signal(signal.SIGINT, signal.SIG_DFL)
     Gtk.main()
 

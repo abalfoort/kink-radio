@@ -6,11 +6,11 @@ if [ -z "$PYTHON" ]; then
   exit 1
 fi
 
-mkdir -p "$HOME/.kink-playing"
+mkdir -p "$HOME/.kink-radio"
 
 DEBUG='-OO'; case "$@" in -d|--debug) DEBUG='-Wd'; esac
 
 # Check if GUI is already started
-if ! pgrep -f python3.*kink-playing &>/dev/null; then
-    python3 ${DEBUG} /usr/lib/kink-playing/main.py $ARGS
+if ! pgrep -f python3.*kink-radio &>/dev/null; then
+    python3 ${DEBUG} /usr/lib/kink-radio/main.py $ARGS
 fi

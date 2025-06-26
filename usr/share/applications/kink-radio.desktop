@@ -1,10 +1,10 @@
 [Desktop Entry]
-Name=KINK Playing
+Name=KINK Radio
 Comment=Notification for what is playing on KINK
 Type=Application
-Exec=kink-playing
+Exec=kink-radio
 Terminal=false
-Icon=kink-playing
+Icon=kink-radio
 X-GNOME-Autostart-enabled=true
 X-KDE-autostart-after=panel
 Categories=AudioVideo;Audio;

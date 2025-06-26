@@ -3,7 +3,7 @@
 """_summary_
     show notification what song Kink is playing.
 
-    Files:        $HOME/.kink-playing
+    Files:        $HOME/.kink-radio
     References:
     i18n:         http://docs.python.org/3/library/gettext.html
     notify:       https://lazka.github.io/pgi-docs/#Notify-0.7
@@ -34,8 +34,8 @@ from gi.repository import Gtk, Notify
 gi.require_version('AyatanaAppIndicator3', '0.1')
 from gi.repository import AyatanaAppIndicator3 as AppIndicator3
 
-APP_ID = 'kink-playing'
-APP_NAME = 'ꓘINK Playing'
+APP_ID = 'kink-radio'
+APP_NAME = 'ꓘINK Radio'
 _ = gettext.translation(APP_ID, fallback=True).gettext
 
 class DefaultSettings(Enum):
@@ -45,7 +45,7 @@ class DefaultSettings(Enum):
     STREAM_DNA = 'http://playerservices.streamtheworld.com/pls/KINK_DNA.pls'
     STREAM_INDIE = 'https://playerservices.streamtheworld.com/pls/KINKINDIE.pls'
     STREAM_DISTORTION = 'https://playerservices.streamtheworld.com/pls/KINK_DISTORTION.pls'
-    JSON = 'https://api.kink.nl/static/now-playing.json'
+    JSON = 'https://api.kink.nl/static/now-radio.json'
     STATION = 'kink'
     WAIT = '10'
     SHOW_NOTIFICATION = '10'
@@ -59,7 +59,7 @@ class MenuIcons(Enum):
     SELECT = 'dialog-ok-apply'
 
 
-class KinkPlaying():
+class KinkRadio():
     """ Connect to Kink radio and show info in system tray. """
     def __init__(self):
         # Initiate variables
@@ -105,7 +105,7 @@ class KinkPlaying():
         # Check if configured for autostart
         if self.autostart:
             if not exists(autostart_dt):
-                copyfile(join(scriptdir, 'kink-playing-autostart.desktop'), autostart_dt)
+                copyfile(join(scriptdir, f"{APP_ID}-autostart.desktop"), autostart_dt)
         else:
             if exists(autostart_dt):
                 os.remove(autostart_dt)
