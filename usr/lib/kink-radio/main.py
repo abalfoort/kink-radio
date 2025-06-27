@@ -1,6 +1,6 @@
 #!/usr/bin/env python3 -OO
 
-""" Initialize KinkPlaying class """
+""" Initialize KinkRadio class """
 # -OO: Turn on basic optimizations.  Given twice, causes docstrings to be discarded.
 
 import sys

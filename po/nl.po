@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-27 16:18+0200\n"
+"POT-Creation-Date: 2025-06-27 16:48+0200\n"
 "PO-Revision-Date: 2020-12-31 15:03+0000\n"
 "Last-Translator: Arjen Balfoort <solydxk.abalfoort@tuta.com>, 2021\n"
 "Language-Team: Dutch\n"
@@ -95,15 +95,18 @@ msgstr ""
 "bugrapport in!"
 
 #: usr/lib/kink-radio/kink-radio-autostart.desktop.in.h:1
-msgid "Autostart kodi-playing"
-msgstr "Autostart kodi-playing"
+msgid "Autostart kink-radio"
+msgstr "Autostart kink-radio"
 
 #: usr/share/applications/kink-radio.desktop.in.h:1
 #, fuzzy
-msgid "KINK Radio"
-msgstr "KINK Radio"
+msgid "KINK radio"
+msgstr "KINK radio"
 
 #: usr/share/applications/kink-radio.desktop.in.h:2
+msgid "System tray app for KINK radio"
+msgstr "Systeemvak app voor KINK radio"
+
 #, fuzzy
-msgid "Notification for what is playing on KINK"
-msgstr "Notificatie voor wat KINK afspeelt"
+#~ msgid "Notification for what is playing on KINK"
+#~ msgstr "Notificatie voor wat KINK afspeelt"

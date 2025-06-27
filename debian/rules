@@ -27,7 +27,7 @@ desktopfls := $(shell find . -wholename ./debian -prune -o -name '*.desktop' -pr
 
 override_dh_auto_clean:
 	# Cleanup first
-	sudo rm -rf ./usr/lib/iso_constructor/__pycache__/
+	sudo rm -rf ./usr/lib/kink-radio/__pycache__/
 	rm -rf ./po/mo  ./po/pot
 	mkdir ./po/mo  ./po/pot
 

@@ -1,6 +1,7 @@
 [Desktop Entry]
-Name=KINK Radio
-Comment=Notification for what is playing on KINK
+Name=KINK radio
+Comment=System tray app for KINK radio
+Comment[nl]=Systeemvak app voor KINK radio
 Type=Application
 Exec=kink-radio
 Terminal=false

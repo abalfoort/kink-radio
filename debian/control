@@ -23,5 +23,5 @@ Depends: ${misc:Depends}, ${python3:Depends}
 Suggests: python3-ipdb
 Conflicts: kink-playing
 Replaces: kink-playing
-Description: ꓘINK radio notification
+Description: System tray app for ꓘINK radio
  Show a notification when ꓘINK radio is playing a new song.

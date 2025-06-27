@@ -1,7 +1,7 @@
 [Desktop Entry]
-Name=Autostart kodi-playing
-Name[nl]=Autostart kodi-playing
-Exec=kodi-playing
+Name=Autostart kink-radio
+Name[nl]=Autostart kink-radio
+Exec=kink-radio
 StartupNotify=false
 Terminal=false
 Type=Application
