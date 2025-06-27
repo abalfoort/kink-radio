@@ -1,6 +1,7 @@
 kink-radio (1.5.1) testing; urgency=low
 
   * Name change to Kink Radio
+  * Set some settings in pop-up menu
 
  -- Arjen Balfoort <solydxk.abalfoort@tuta.com>  Thu, 26 Jun 2025 18:22:59 +0200
 
