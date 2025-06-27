@@ -21,5 +21,7 @@ Depends: ${misc:Depends}, ${python3:Depends}
   , python3-vlc
   , xdg-utils
 Suggests: python3-ipdb
-Description: Show ꓘINK radio notification
+Conflicts: kink-playing
+Replaces: kink-playing
+Description: ꓘINK radio notification
  Show a notification when ꓘINK radio is playing a new song.
