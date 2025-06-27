@@ -38,20 +38,6 @@ APP_ID = 'kink-radio'
 APP_NAME = 'ꓘINK Radio'
 _ = gettext.translation(APP_ID, fallback=True).gettext
 
-class DefaultSettings(Enum):
-    """ Enum with default settings.ini values """
-    SITE = 'https://kink.nl'
-    STREAM_KINK = 'https://playerservices.streamtheworld.com/pls/KINK.pls'
-    STREAM_DNA = 'http://playerservices.streamtheworld.com/pls/KINK_DNA.pls'
-    STREAM_INDIE = 'https://playerservices.streamtheworld.com/pls/KINKINDIE.pls'
-    STREAM_DISTORTION = 'https://playerservices.streamtheworld.com/pls/KINK_DISTORTION.pls'
-    JSON = 'https://api.kink.nl/static/now-radio.json'
-    STATION = 'kink'
-    WAIT = '10'
-    SHOW_NOTIFICATION = '10'
-    AUTOSTART = 'false'
-    AUTOPLAY = 'true'
-
 class MenuIcons(Enum):
     """ Enum with icon names or paths """
     PLAY = 'media-playback-start'
@@ -68,6 +54,7 @@ class KinkRadio():
         local_dir = join(home, f".{APP_ID}")
         autostart_dt = join(home, f".config/autostart/{APP_ID}-autostart.desktop")
         self.playlist = join(local_dir, f"{APP_ID}.txt")
+        self.default_settings = join(scriptdir, 'settings.ini')
         self.settings = join(local_dir, 'settings.ini')
         self.tmp_thumb = join(local_dir, 'album_art.jpg')
         self.grey_icon = join(scriptdir, f"{APP_ID}-grey.svg")
@@ -88,19 +75,11 @@ class KinkRadio():
         os.makedirs(local_dir, exist_ok=True)
         # Create conf file if it does not already exist
         if not exists(self.settings):
-            cont = ''
-            # Get default settings
-            with open(file=join(scriptdir, 'settings.ini'),
-                      mode='r', encoding='utf-8') as def_settings_fle:
-                cont = def_settings_fle.read()
-            # Save settings.ini
-            with open(file=self.settings, mode='w', encoding='utf-8') as settings_fle:
-                settings_fle.write(cont)
-            # Let the user configure the settings and block the process until done
-            self.show_settings()
+            copyfile(self.default_settings, self.settings)
 
-        # Read the ini into a dictionary
-        self.read_config()
+        # Read the default and user ini into dictionaries
+        self.read_default_ini()
+        self.read_ini()
 
         # Check if configured for autostart
         if self.autostart:
@@ -238,22 +217,22 @@ class KinkRadio():
         stations.sort()
 
         # kink-indie is not used
-        try:
-            stations.remove('kink-indie')
-        except Exception:
-            pass
+        #try:
+        #    stations.remove('kink-indie')
+        #except Exception:
+        #    pass
 
         return stations
 
-    def switch_station(self, station):
+    def switch_station(self, key, value):
         """Switch KINK station.
 
         Args:
             station (str): KINK station name
         """
-        if station == self.station:
+        if key != 'station' or value == self.station:
             return
-        self.station = station
+        self.station = value
         print((f"Switch station: {self.station}"))
 
         was_playing = False
@@ -364,7 +343,7 @@ class KinkRadio():
             img = Gtk.Image.new_from_icon_name(icon, Gtk.IconSize.MENU)
         return img
 
-    def _menu_item(self, label="", icon=None, function=None, argument=None):
+    def _menu_item(self, label="", icon=None, function=None, key=None, value=None):
         """Create MenuItem with given arguments
 
         Args:
@@ -387,8 +366,8 @@ class KinkRadio():
         item.add(item_box)
         item.show_all()
 
-        if function and argument:
-            item.connect('activate', lambda * a: function(argument))
+        if function and key and value:
+            item.connect('activate', lambda * a: function(key, value))
         elif function:
             item.connect('activate', lambda * a: function())
         return item
@@ -407,13 +386,45 @@ class KinkRadio():
         sub_menu.append(self._menu_item(label=self.site[self.site.rfind('/') + 1:],
                                         function=self.show_site))
         sub_menu.append(Gtk.SeparatorMenuItem())
-        sub_menu.append(self._menu_item(label=_('Settings'),
-                                        function=self.show_settings))
-        sub_menu.append(Gtk.SeparatorMenuItem())
         sub_menu.append(self._menu_item(label=_('Playlist'),
                                         function=self.show_log))
         item_kink.set_submenu(sub_menu)
         menu.append(item_kink)
+
+        # Settings
+        menu.append(Gtk.SeparatorMenuItem())
+        item_settings = Gtk.MenuItem.new_with_label(_('Settings'))
+        select_icon = ""
+        new_notification_value = 10
+        if self.notification_timeout > 0:
+            select_icon = MenuIcons.SELECT.value
+            new_notification_value = 0
+        sub_menu.append(self._menu_item(label=_("Show what's playing"),
+                                        icon=select_icon,
+                                        function=self.save_ini,
+                                        key='show_notification',
+                                        value=new_notification_value))
+
+        select_icon = MenuIcons.SELECT.value if self.autoplay else ''
+        sub_menu.append(self._menu_item(label=_("Autoplay when starting"),
+                                        icon=select_icon,
+                                        function=self.save_ini,
+                                        key='autoplay',
+                                        value=str(not self.autoplay).lower()))
+
+        select_icon = MenuIcons.SELECT.value if self.autostart else ''
+        sub_menu.append(self._menu_item(label=_("Autostart after login"),
+                                        icon=select_icon,
+                                        function=self.save_ini,
+                                        key='autostart',
+                                        value=str(not self.autostart).lower()))
+
+        sub_menu.append(Gtk.SeparatorMenuItem())
+        sub_menu.append(self._menu_item(label=_('Edit settings.ini'),
+                                        function=self.show_settings))
+
+        item_settings.set_submenu(sub_menu)
+        menu.append(item_settings)
 
         # Stations
         menu.append(Gtk.SeparatorMenuItem())
@@ -428,7 +439,8 @@ class KinkRadio():
                 sub_menu.append(self._menu_item(label=station,
                                                 icon=select_icon,
                                                 function=self.switch_station,
-                                                argument=station))
+                                                key='station',
+                                                value=station))
             item_stations.set_submenu(sub_menu)
         menu.append(item_stations)
 
@@ -491,7 +503,7 @@ class KinkRadio():
         """ Open settings.ini in default editor. """
         if exists(self.settings):
             open_text_file(self.settings)
-            self.read_config()
+            self.read_ini()
 
     # ===============================================
     # General functions
@@ -501,7 +513,7 @@ class KinkRadio():
         """ Quit the application. """
         self.check_done_event.set()
         self.stop_kink()
-        self.save_station()
+        self.save_ini(key='station', value=self.station)
         Notify.uninit()
         Gtk.main_quit()
 
@@ -517,13 +529,18 @@ class KinkRadio():
         try:
             value = self.kink_dict['kink'][key]
         except KeyError:
-            value = DefaultSettings[key.upper()].value
-            with open(file=self.settings, mode='a', encoding='utf-8') as conf:
-                conf.write(f"\n{key} = {value}\n")
+            with open(file=self.settings, mode='a', encoding='utf-8') as settings_ini:
+                settings_ini.write(f"\n{key} = {self.default_kink_dict[key]}\n")
         return value
 
-    def read_config(self):
-        """ Read settings.ini, save in dictionary and check some variables. """
+    def read_default_ini(self):
+        """ Read the default settings.ini and save in dictionary. """
+        self.conf_parser.read(self.default_settings)
+        self.default_kink_dict = {s:dict(self.conf_parser.items(s)) for
+                                  s in self.conf_parser.sections()}
+
+    def read_ini(self):
+        """ Read user settings.ini, save in dictionary and check some variables. """
         self.conf_parser.read(self.settings)
         self.kink_dict = {s:dict(self.conf_parser.items(s)) for s in self.conf_parser.sections()}
         self.site = self._check_conf_key('site')
@@ -539,13 +556,14 @@ class KinkRadio():
         self.autostart = str_bool(self._check_conf_key('autostart'))
         self.autoplay = str_bool(self._check_conf_key('autoplay'))
 
-    def save_station(self):
-        ''' Save station to the config file '''
+    def save_ini(self, key, value):
+        ''' Save settings.ini '''
         if 'kink' not in self.conf_parser.sections():
             self.conf_parser.add_section('kink')
-        self.conf_parser.set('kink', 'station', self.station)
-        with open(file=self.settings, mode='w', encoding='utf-8') as conf:
-            self.conf_parser.write(conf)
+        self.conf_parser.set('kink', key, value)
+        ''' Save the current config object to file '''
+        with open(file=self.settings, mode='w', encoding='utf-8') as settings_ini:
+            self.conf_parser.write(settings_ini)
 
     def show_notification(self, summary, body=None, thumb=None):
         """Show the notification.
