@@ -6,7 +6,15 @@ if [ -z "$PYTHON" ]; then
   exit 1
 fi
 
-mkdir -p "$HOME/.kink-radio"
+if [ -d "$HOME/.kink-playing" ]; then
+    if [ -d "$HOME/.kink-radio" ]; then
+        rm -rf "$HOME/.kink-playing"
+    else
+        mv -f "$HOME/.kink-playing" "$HOME/.kink-radio"
+    fi
+else
+    mkdir -p "$HOME/.kink-radio"
+fi
 
 DEBUG='-OO'; case "$@" in -d|--debug) DEBUG='-Wd'; esac
 
