@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-27 16:48+0200\n"
+"POT-Creation-Date: 2025-06-28 17:30+0200\n"
 "PO-Revision-Date: 2020-12-31 15:03+0000\n"
 "Last-Translator: Arjen Balfoort <solydxk.abalfoort@tuta.com>, 2021\n"
 "Language-Team: Dutch\n"
@@ -21,33 +21,33 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: usr/lib/kink-radio/kink.py:130
+#: usr/lib/kink-radio/kink.py:132
 msgid "Unable to connect to:"
 msgstr "Niet in staat te verbinden:"
 
-#: usr/lib/kink-radio/kink.py:172
+#: usr/lib/kink-radio/kink.py:175
 msgid "Artist"
 msgstr "Artiest"
 
-#: usr/lib/kink-radio/kink.py:173
+#: usr/lib/kink-radio/kink.py:176
 msgid "Title"
 msgstr "Titel"
 
-#: usr/lib/kink-radio/kink.py:389
+#: usr/lib/kink-radio/kink.py:387
 #, fuzzy
 msgid "Playlist"
 msgstr "Afspeellijst"
 
-#: usr/lib/kink-radio/kink.py:396
+#: usr/lib/kink-radio/kink.py:394
 msgid "Settings"
 msgstr "Instellingen"
 
-#: usr/lib/kink-radio/kink.py:402
+#: usr/lib/kink-radio/kink.py:401
 #, fuzzy
 msgid "Show what's playing"
 msgstr "Speelt nu af"
 
-#: usr/lib/kink-radio/kink.py:409
+#: usr/lib/kink-radio/kink.py:408
 msgid "Autoplay when starting"
 msgstr "Autoplay na starten"
 
@@ -56,28 +56,24 @@ msgstr "Autoplay na starten"
 msgid "Autostart after login"
 msgstr "Autostart no login"
 
-#: usr/lib/kink-radio/kink.py:423
-msgid "Edit settings.ini"
-msgstr "Bewerk settings.ini"
-
-#: usr/lib/kink-radio/kink.py:431
+#: usr/lib/kink-radio/kink.py:428
 #, fuzzy
 msgid "Stations"
 msgstr "Duur"
 
-#: usr/lib/kink-radio/kink.py:449
+#: usr/lib/kink-radio/kink.py:446
 msgid "Now playing"
 msgstr "Speelt nu af"
 
-#: usr/lib/kink-radio/kink.py:456
+#: usr/lib/kink-radio/kink.py:453
 msgid "Pause"
 msgstr "Pause"
 
-#: usr/lib/kink-radio/kink.py:460
+#: usr/lib/kink-radio/kink.py:457
 msgid "Play"
 msgstr "Afspelen"
 
-#: usr/lib/kink-radio/kink.py:467
+#: usr/lib/kink-radio/kink.py:464
 msgid "Quit"
 msgstr "Afsluiten"
 
@@ -106,6 +102,9 @@ msgstr "KINK radio"
 #: usr/share/applications/kink-radio.desktop.in.h:2
 msgid "System tray app for KINK radio"
 msgstr "Systeemvak app voor KINK radio"
+
+#~ msgid "Edit settings.ini"
+#~ msgstr "Bewerk settings.ini"
 
 #, fuzzy
 #~ msgid "Notification for what is playing on KINK"
