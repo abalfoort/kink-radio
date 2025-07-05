@@ -1,3 +1,16 @@
+kink-radio (1.5.3) testing; urgency=low
+
+  * Replace Play/Pause with separate Play and Stop
+
+ -- Arjen Balfoort <solydxk.abalfoort@tuta.com>  Wed, 02 Jul 2025 09:47:45 +0200
+
+kink-radio (1.5.2) testing; urgency=low
+
+  * Improve autostart
+  * Remove some menu separator lines
+
+ -- Arjen Balfoort <solydxk.abalfoort@tuta.com>  Mon, 30 Jun 2025 09:30:38 +0200
+
 kink-radio (1.5.1) testing; urgency=low
 
   * Name change to Kink Radio
