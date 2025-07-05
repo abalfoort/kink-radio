@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-28 17:30+0200\n"
+"POT-Creation-Date: 2025-07-02 09:49+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,55 +17,55 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: usr/lib/kink-radio/kink.py:132
+#: usr/lib/kink-radio/kink.py:123
 msgid "Unable to connect to:"
 msgstr ""
 
-#: usr/lib/kink-radio/kink.py:175
+#: usr/lib/kink-radio/kink.py:166
 msgid "Artist"
 msgstr ""
 
-#: usr/lib/kink-radio/kink.py:176
+#: usr/lib/kink-radio/kink.py:167
 msgid "Title"
 msgstr ""
 
-#: usr/lib/kink-radio/kink.py:387
+#: usr/lib/kink-radio/kink.py:373
 msgid "Playlist"
 msgstr ""
 
-#: usr/lib/kink-radio/kink.py:394
+#: usr/lib/kink-radio/kink.py:380
 msgid "Settings"
 msgstr ""
 
-#: usr/lib/kink-radio/kink.py:401
+#: usr/lib/kink-radio/kink.py:387
 msgid "Show what's playing"
 msgstr ""
 
-#: usr/lib/kink-radio/kink.py:408
+#: usr/lib/kink-radio/kink.py:394
 msgid "Autoplay when starting"
 msgstr ""
 
-#: usr/lib/kink-radio/kink.py:416
+#: usr/lib/kink-radio/kink.py:402
 msgid "Autostart after login"
 msgstr ""
 
-#: usr/lib/kink-radio/kink.py:428
+#: usr/lib/kink-radio/kink.py:413
 msgid "Stations"
 msgstr ""
 
-#: usr/lib/kink-radio/kink.py:446
+#: usr/lib/kink-radio/kink.py:430
 msgid "Now playing"
 msgstr ""
 
-#: usr/lib/kink-radio/kink.py:453
-msgid "Pause"
-msgstr ""
-
-#: usr/lib/kink-radio/kink.py:457
+#: usr/lib/kink-radio/kink.py:436
 msgid "Play"
 msgstr ""
 
-#: usr/lib/kink-radio/kink.py:464
+#: usr/lib/kink-radio/kink.py:440
+msgid "Stop"
+msgstr ""
+
+#: usr/lib/kink-radio/kink.py:447
 msgid "Quit"
 msgstr ""
 

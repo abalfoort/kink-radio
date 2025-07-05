@@ -23,7 +23,7 @@ from pathlib import Path
 from configparser import ConfigParser
 from os.path import abspath, dirname, join, exists
 from threading import Event, Thread
-from utils import open_text_file, str_int, str_bool
+from utils import str_int, str_bool
 
 import vlc
 import requests
@@ -41,7 +41,7 @@ _ = gettext.translation(APP_ID, fallback=True).gettext
 class MenuIcons(Enum):
     """ Enum with icon names or paths """
     PLAY = 'media-playback-start'
-    PAUSE = 'media-playback-pause'
+    STOP = 'media-playback-stop'
     SELECT = 'dialog-ok-apply'
 
 
@@ -49,15 +49,14 @@ class KinkRadio():
     """ Connect to Kink radio and show info in system tray. """
     def __init__(self):
         # Initiate variables
-        scriptdir = abspath(dirname(__file__))
-        home = str(Path.home())
-        local_dir = join(home, f".{APP_ID}")
-        autostart_dt = join(home, f".config/autostart/{APP_ID}-autostart.desktop")
-        self.playlist = join(local_dir, f"{APP_ID}.txt")
-        self.default_settings = join(scriptdir, 'settings.ini')
-        self.settings = join(local_dir, 'settings.ini')
-        self.tmp_thumb = join(local_dir, 'album_art.jpg')
-        self.grey_icon = join(scriptdir, f"{APP_ID}-grey.svg")
+        self.scriptdir = abspath(dirname(__file__))
+        self.home = str(Path.home())
+        self.local = join(self.home, f".{APP_ID}")
+        self.playlist = join(self.local, f"{APP_ID}.txt")
+        self.default_settings = join(self.scriptdir, 'settings.ini')
+        self.settings = join(self.local, 'settings.ini')
+        self.tmp_thumb = join(self.local, 'album_art.jpg')
+        self.grey_icon = join(self.scriptdir, f"{APP_ID}-grey.svg")
         self.instance = vlc.Instance('--intf dummy')
         self.list_player = self.instance.media_list_player_new()
         self.cur_playing = {'station': '', 'program': '',
@@ -71,7 +70,7 @@ class KinkRadio():
         self.conf_parser = ConfigParser(comment_prefixes='/', allow_no_value=True)
 
         # Create local directory
-        os.makedirs(local_dir, exist_ok=True)
+        os.makedirs(self.local, exist_ok=True)
         # Create conf file if it does not already exist
         if not exists(self.settings):
             copyfile(self.default_settings, self.settings)
@@ -82,14 +81,6 @@ class KinkRadio():
 
         # Save settings in variables
         self.wait = max(str_int(self.key_value('wait')), 1)
-
-        # Check if configured for autostart
-        if str_bool(self.key_value('autostart')):
-            if not exists(autostart_dt):
-                copyfile(join(scriptdir, f"{APP_ID}-autostart.desktop"), autostart_dt)
-        else:
-            if exists(autostart_dt):
-                os.remove(autostart_dt)
 
         # Create event to use when thread is done
         self.check_done_event = Event()
@@ -113,7 +104,7 @@ class KinkRadio():
         if str_bool(self.key_value('autoplay')):
             self.play_kink()
         else:
-            self.pause_kink()
+            self.stop_kink()
 
         # Start thread to check for connection changes
         Thread(target=self._run_check).start()
@@ -312,14 +303,10 @@ class KinkRadio():
         self.list_player.play()
         self.indicator.set_menu(self._build_menu())
 
-    def pause_kink(self):
-        """ Pause playlist """
-        self.list_player.pause()
-        self.indicator.set_menu(self._build_menu())
-
     def stop_kink(self):
         """ Stop playlist """
         self.list_player.stop()
+        self.indicator.set_menu(self._build_menu())
 
     # ===============================================
     # System Tray Icon
@@ -383,7 +370,6 @@ class KinkRadio():
         site = self.key_value('site')
         sub_menu_kink.append(self._menu_item(label=site[site.rfind('/') + 1:],
                                              function=self.show_site))
-        sub_menu_kink.append(Gtk.SeparatorMenuItem())
         sub_menu_kink.append(self._menu_item(label=_('Playlist'),
                                              function=self.show_log))
         item_kink.set_submenu(sub_menu_kink)
@@ -424,7 +410,6 @@ class KinkRadio():
         menu.append(item_settings)
 
         # Stations
-        menu.append(Gtk.SeparatorMenuItem())
         item_stations = Gtk.MenuItem.new_with_label(_('Stations'))
         stations = self.get_stations()
         if stations:
@@ -442,22 +427,20 @@ class KinkRadio():
         menu.append(item_stations)
 
         # Now playing menu
-        menu.append(Gtk.SeparatorMenuItem())
         item_now_playing = self._menu_item(label=_('Now playing'),
                                            function=self.show_current)
         menu.append(item_now_playing)
 
-        # Play/pause menu
+        # Play and Stop menus
         menu.append(Gtk.SeparatorMenuItem())
-        if self.list_player.is_playing():
-            item_play_pause = self._menu_item(label=_('Pause'),
-                                              icon=MenuIcons.PAUSE.value,
-                                              function=self.play_pause)
-        else:
-            item_play_pause = self._menu_item(label=_('Play'),
-                                              icon=MenuIcons.PLAY.value,
-                                              function=self.play_pause)
-        menu.append(item_play_pause)
+        item_play = self._menu_item(label=_('Play'),
+                                            icon=MenuIcons.PLAY.value,
+                                            function=self.play_kink)
+        menu.append(item_play)
+        item_stop = self._menu_item(label=_('Stop'),
+                                            icon=MenuIcons.STOP.value,
+                                            function=self.stop_kink)
+        menu.append(item_stop)
 
         # Quit menu
         menu.append(Gtk.SeparatorMenuItem())
@@ -467,11 +450,18 @@ class KinkRadio():
         # Decide what can be used
         item_now_playing.set_sensitive(True)
         item_stations.set_sensitive(True)
-        item_play_pause.set_sensitive(True)
+        item_play.set_sensitive(True)
+        item_stop.set_sensitive(True)
         if not self._is_connected():
             item_now_playing.set_sensitive(False)
             item_stations.set_sensitive(False)
-            item_play_pause.set_sensitive(False)
+            item_play.set_sensitive(False)
+            item_stop.set_sensitive(False)
+
+        if self.list_player.is_playing():
+            item_play.set_sensitive(False)
+        else:
+            item_stop.set_sensitive(False)
 
         # Show the menu and return the menu object
         menu.show_all()
@@ -488,13 +478,6 @@ class KinkRadio():
     def show_log(self, widget=None):
         """ Show site in default browser """
         subprocess.call(['xdg-open', self.playlist])
-
-    def play_pause(self, widget=None):
-        """ Play or pause Kink radio """
-        if self.list_player.is_playing():
-            self.pause_kink()
-        else:
-            self.play_kink()
 
     # ===============================================
     # General functions
@@ -558,6 +541,19 @@ class KinkRadio():
 
         # Rebuild the menu
         self.indicator.set_menu(self._build_menu())
+
+        # Check if autostart is set
+        self.check_autostart()
+
+    def check_autostart(self):
+        """ Check if configured for autostart """
+        autostart = join(self.home, f".config/autostart/{APP_ID}-autostart.desktop")
+        if str_bool(self.key_value('autostart')):
+            if not exists(autostart):
+                copyfile(join(self.scriptdir, f"{APP_ID}-autostart.desktop"), autostart)
+        else:
+            if exists(autostart):
+                os.remove(autostart)
 
     def show_notification(self, summary, body=None, thumb=None):
         """Show the notification.
